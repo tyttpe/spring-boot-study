@@ -1,5 +1,6 @@
 package com.springboot.mybatis.service.impl;
 
+import com.springboot.mybatis.Util.RandomUtil;
 import com.springboot.mybatis.entity.Course;
 import com.springboot.mybatis.mapper.CourseMapper;
 import com.springboot.mybatis.service.CourseService;
@@ -35,5 +36,25 @@ public class CourseServiceImplTest {
     @Test
     public void delete() {
         courseService.delete(7L);
+    }
+
+    @Test
+    public void insert() {
+        Course course = new Course();
+        course.setCourseName("微信小程序");
+        course.setCourseClass("软件1721");
+        course.setUserId(1L);
+        course.setCover("2.png");
+        course.setCourseCode(RandomUtil.getRandomCode());
+        course.setFinished((short) 0);
+        courseService.insert(course);
+    }
+
+    @Test
+    public void update() {
+        Course course = courseService.getOne(9L);
+        course.setCover("1.jpg");
+        course.setFinished((short) 1);
+        courseService.updata(course);
     }
 }

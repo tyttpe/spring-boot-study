@@ -1,18 +1,16 @@
 package com.springboot.mybatis.controller;
 
+import com.springboot.mybatis.Util.RandomUtil;
 import com.springboot.mybatis.entity.Course;
 import com.springboot.mybatis.service.CourseService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-public class Controller {
+public class CourseController {
     @Resource
     private CourseService courseService;
 
@@ -29,5 +27,16 @@ public class Controller {
     @RequestMapping(value = "/course/{id}",method = RequestMethod.DELETE)
     public void deleteCourse(@PathVariable("id") long id){
         courseService.delete(id);
+    }
+
+    @RequestMapping(value = "/course",method = RequestMethod.POST)
+    public Course addCourse(@RequestBody Course course){
+        course.setCourseCode(RandomUtil.getRandomCode());
+        return courseService.insert(course);
+    }
+
+    @RequestMapping(value = "/course",method = RequestMethod.PUT)
+    public void update(@RequestBody Course course){
+        courseService.updata(course);
     }
 }
