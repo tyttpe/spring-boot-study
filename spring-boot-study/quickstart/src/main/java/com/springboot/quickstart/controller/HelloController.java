@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /*
-* SpringBoot的第一个RESTful亲求
+* SpringBoot的第一个RESTful请求
 * */
 
 @RestController
